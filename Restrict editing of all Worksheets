@@ -1,0 +1,18 @@
+Private Sub Workbook_Open()
+Dim sheet As Worksheet
+Dim key As String
+key = "Password"
+
+If Environ("Username") = "Username1" Or Environ("Username") = "Username2" Then
+    ActiveWorkbook.Unprotect Password:=key
+    For Each sheet In Worksheets
+    sheet.Unprotect Password:=key
+    Next sheet
+Else
+    ActiveWorkbook.Protect Password:=key, Structure:=True, Windows:=True
+    For Each sheet In Worksheets
+        sheet.Protect Password:=key
+    Next sheet
+End If
+
+End Sub
